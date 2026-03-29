@@ -207,7 +207,7 @@ function App() {
     <>
       <header>
         <h1 className="app-title">Right is Right</h1>
-        <p className="app-subtitle">모든 밸런스는 오른쪽으로. 오직 오른쪽만이 정답입니다.</p>
+        <p className="app-subtitle">모든 밸런스는 오른쪽으로.</p>
         
         {quests.length > 0 && <MasterGauge score={currentTotalScore} />}
         
