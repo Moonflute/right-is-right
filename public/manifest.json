@@ -1,0 +1,17 @@
+{
+  "name": "Right is Right",
+  "short_name": "RiR",
+  "description": "라이프스타일 밸런스 타이머",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#0f172a",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
