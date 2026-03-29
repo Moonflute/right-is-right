@@ -8,11 +8,15 @@ function AddQuestModal({ onAdd, onClose }) {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    if (!title.trim()) return
+    const h = parseInt(hours) || 0
+    const m = parseInt(minutes) || 0
     
-    const targetTimeInSeconds = (parseInt(hours) * 3600) + (parseInt(minutes) * 60)
+    if (!title.trim() || (h === 0 && m === 0)) {
+      alert('유효한 목표와 시간을 입력하세요.')
+      return
+    }
     
-    if (targetTimeInSeconds <= 0) return
+    const targetTimeInSeconds = (h * 3600) + (m * 60)
 
     onAdd({
       title: title.trim(),
