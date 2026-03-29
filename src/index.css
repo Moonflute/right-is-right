@@ -1,20 +1,20 @@
 :root {
-  --bg-color: #0f172a; /* Slate 900 */
-  --bg-surface: #1e293b; /* Slate 800 */
-  --bg-surface-hover: #334155;
-  --text-primary: #f8fafc;
-  --text-secondary: #94a3b8;
+  --bg-color: #f8fafc; /* Slate 50 */
+  --bg-surface: #ffffff; /* White */
+  --bg-surface-hover: #f1f5f9; /* Slate 100 */
+  --text-primary: #0f172a; /* Slate 900 */
+  --text-secondary: #64748b; /* Slate 500 */
   
   --accent-plus: #10b981; /* Emerald 500 */
-  --accent-plus-glow: rgba(16, 185, 129, 0.4);
+  --accent-plus-glow: rgba(16, 185, 129, 0.2);
   
   --accent-minus: #ef4444; /* Red 500 */
-  --accent-minus-glow: rgba(239, 68, 68, 0.4);
+  --accent-minus-glow: rgba(239, 68, 68, 0.2);
   
-  --bar-bg: #0b1120;
+  --bar-bg: #e2e8f0; /* Slate 200 */
   
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 body {
@@ -39,10 +39,7 @@ h1.app-title {
   font-size: 2.5rem;
   font-weight: 800;
   margin-bottom: 0.5rem;
-  background: linear-gradient(to right, #38bdf8, #818cf8);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--text-primary);
 }
 
 p.app-subtitle {
@@ -150,7 +147,7 @@ p.app-subtitle {
   border-radius: 9999px;
   overflow: hidden;
   position: relative;
-  box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
   display: flex;
 }
 
@@ -245,10 +242,10 @@ p.app-subtitle {
 .input-group input, .input-group select {
   width: 100%;
   padding: 0.75rem;
-  background-color: var(--bar-bg);
-  border: 1px solid var(--bg-surface-hover);
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
   border-radius: 0.5rem;
-  color: white;
+  color: var(--text-primary);
   font-size: 1rem;
   box-sizing: border-box;
 }
@@ -292,7 +289,7 @@ p.app-subtitle {
 }
 
 .btn-secondary:hover {
-  background-color: var(--text-secondary);
+  background-color: #e2e8f0;
 }
 
 /* Reorder */
@@ -318,6 +315,8 @@ p.app-subtitle {
 
 .reorder-btn:hover:not(:disabled) {
   color: var(--text-primary);
+  background-color: var(--bg-surface-hover);
+  border-radius: 0.25rem;
 }
 
 .reorder-btn:disabled {
@@ -377,7 +376,7 @@ p.app-subtitle {
   font-size: 1.5rem;
   font-weight: 800;
   font-variant-numeric: tabular-nums;
-  text-shadow: 0 0 10px rgba(255,255,255,0.1);
+  text-shadow: none;
 }
 
 .master-progress-container {
@@ -387,7 +386,7 @@ p.app-subtitle {
 
 .master-bar {
   transition: width 1s ease, background 1s ease;
-  box-shadow: inset 0 -2px 5px rgba(0,0,0,0.2), 0 0 15px rgba(255,255,255,0.1);
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.1), 0 0 10px var(--accent-plus-glow);
 }
 
 /* History Modal */

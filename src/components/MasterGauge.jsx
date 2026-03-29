@@ -16,7 +16,7 @@ function MasterGauge({ score }) {
           className="progress-bar master-bar" 
           style={{ 
             width: `${score}%`, 
-            background: `linear-gradient(90deg, hsl(0, 0%, 20%), hsl(${hue}, 80%, 50%))`
+            background: `linear-gradient(90deg, #e2e8f0, hsl(${hue}, 80%, 50%))`
           }}
         ></div>
       </div>
