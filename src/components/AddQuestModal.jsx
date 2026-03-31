@@ -1,10 +1,10 @@
 import { useState } from 'react'
 
-function AddQuestModal({ onAdd, onClose }) {
-  const [title, setTitle] = useState('')
-  const [type, setType] = useState('plus')
-  const [hours, setHours] = useState(0)
-  const [minutes, setMinutes] = useState(30)
+function AddQuestModal({ onAdd, onClose, editData = null }) {
+  const [title, setTitle] = useState(editData ? editData.title : '')
+  const [type, setType] = useState(editData ? editData.type : 'plus')
+  const [hours, setHours] = useState(editData ? Math.floor(editData.targetTime / 3600) : 0)
+  const [minutes, setMinutes] = useState(editData ? Math.floor((editData.targetTime % 3600) / 60) : 30)
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -28,7 +28,7 @@ function AddQuestModal({ onAdd, onClose }) {
   return (
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-content" onClick={e => e.stopPropagation()}>
-        <h2 className="modal-title">새 퀘스트 추가</h2>
+        <h2 className="modal-title">{editData ? '퀘스트 수정' : '새 퀘스트 추가'}</h2>
         
         <form onSubmit={handleSubmit}>
           <div className="input-group">
@@ -44,8 +44,8 @@ function AddQuestModal({ onAdd, onClose }) {
           </div>
 
           <div className="input-group">
-            <label>유형 (Type)</label>
-            <select value={type} onChange={e => setType(e.target.value)}>
+            <label>유형 (Type) {editData && "(유형은 수정할 수 없습니다)"}</label>
+            <select value={type} onChange={e => setType(e.target.value)} disabled={!!editData}>
               <option value="plus">🟢 달성 목표 (Target : 채워야 할 시간)</option>
               <option value="minus">🔴 제한 한도 (Limit : 방어해야 할 시간)</option>
             </select>
@@ -80,7 +80,7 @@ function AddQuestModal({ onAdd, onClose }) {
 
           <div className="modal-actions">
             <button type="button" className="btn-secondary" onClick={onClose}>취소</button>
-            <button type="submit" className="btn-primary">추가하기</button>
+            <button type="submit" className="btn-primary">{editData ? '수정하기' : '추가하기'}</button>
           </div>
         </form>
       </div>

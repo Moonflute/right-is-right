@@ -1,4 +1,4 @@
-import { Play, Pause, RotateCcw, Trash2, Plus, Minus, ChevronUp, ChevronDown } from 'lucide-react'
+import { Play, Pause, RotateCcw, Trash2, Plus, Minus, ChevronUp, ChevronDown, Edit2 } from 'lucide-react'
 
 // Convert seconds to HH:MM:SS format
 const formatTime = (totalSeconds) => {
@@ -12,7 +12,7 @@ const formatTime = (totalSeconds) => {
   return `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`
 }
 
-function QuestItem({ quest, index, totalItems, onToggle, onReset, onAdjust, onDelete, onReorder }) {
+function QuestItem({ quest, index, totalItems, onToggle, onReset, onAdjust, onDelete, onReorder, onEdit }) {
   const { title, type, targetTime, currentTime, isRunning } = quest
   
   let barWidth = "0%"
@@ -86,10 +86,13 @@ function QuestItem({ quest, index, totalItems, onToggle, onReset, onAdjust, onDe
           <button className="btn-icon play" onClick={onToggle} disabled={isCompleted}>
             {isRunning ? <Pause size={20} /> : <Play size={20} />}
           </button>
-          <button className="btn-icon reset" onClick={onReset}>
+          <button className="btn-icon reset" onClick={onReset} title="초기화">
             <RotateCcw size={20} />
           </button>
-          <button className="btn-icon reset" onClick={onDelete}>
+          <button className="btn-icon reset" onClick={onEdit} title="수정하기">
+            <Edit2 size={20} />
+          </button>
+          <button className="btn-icon reset" onClick={onDelete} title="삭제하기">
             <Trash2 size={20} />
           </button>
         </div>

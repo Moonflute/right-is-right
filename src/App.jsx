@@ -25,6 +25,7 @@ function App() {
 
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [isHistoryOpen, setIsHistoryOpen] = useState(false)
+  const [editingQuest, setEditingQuest] = useState(null)
 
   // -- Score Calculation Layer --
   const calculateTotalScore = useCallback((currentQuests) => {
@@ -137,9 +138,25 @@ function App() {
   }, [lastDate, summarizeDay])
 
   // -- Event Handlers --
-  const handleAddQuest = (newQuest) => {
-    setQuests([...quests, { ...newQuest, id: Date.now().toString(), currentTime: 0, isRunning: false, hasAlerted: false, order: quests.length }])
+  const handleSaveQuest = (savedQuest) => {
+    if (editingQuest) {
+      setQuests(quests.map(q => q.id === editingQuest.id ? { ...q, title: savedQuest.title, targetTime: savedQuest.targetTime } : q))
+    } else {
+      setQuests([...quests, { ...savedQuest, id: Date.now().toString(), currentTime: 0, isRunning: false, hasAlerted: false, order: quests.length }])
+    }
     setIsModalOpen(false)
+    setEditingQuest(null)
+  }
+
+  const openEditModal = (id) => {
+    const questToEdit = quests.find(q => q.id === id)
+    setEditingQuest(questToEdit)
+    setIsModalOpen(true)
+  }
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false)
+    setEditingQuest(null)
   }
 
   const toggleTimer = (id) => {
@@ -228,6 +245,7 @@ function App() {
             onAdjust={adjustTime} 
             onDelete={deleteQuest} 
             onReorder={reorderQuest}
+            onEdit={openEditModal}
           />
         </section>
 
@@ -242,6 +260,7 @@ function App() {
             onAdjust={adjustTime} 
             onDelete={deleteQuest} 
             onReorder={reorderQuest}
+            onEdit={openEditModal}
           />
         </section>
 
@@ -253,8 +272,9 @@ function App() {
 
       {isModalOpen && (
         <AddQuestModal 
-          onAdd={handleAddQuest} 
-          onClose={() => setIsModalOpen(false)} 
+          onAdd={handleSaveQuest} 
+          onClose={handleCloseModal}
+          editData={editingQuest}
         />
       )}
 

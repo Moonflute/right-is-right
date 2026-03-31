@@ -1,6 +1,6 @@
 import QuestItem from './QuestItem'
 
-function QuestList({ quests, onToggle, onReset, onAdjust, onDelete, onReorder }) {
+function QuestList({ quests, onToggle, onReset, onAdjust, onDelete, onReorder, onEdit }) {
   if (quests.length === 0) {
     return <p style={{ color: 'var(--text-secondary)', textAlign: 'center', margin: '2rem 0' }}>퀘스트가 없습니다.</p>
   }
@@ -18,6 +18,7 @@ function QuestList({ quests, onToggle, onReset, onAdjust, onDelete, onReorder })
           onAdjust={(direction) => onAdjust(q.id, direction)}
           onDelete={() => onDelete(q.id)}
           onReorder={(direction) => onReorder(q.id, direction)}
+          onEdit={() => onEdit(q.id)}
         />
       ))}
     </div>
