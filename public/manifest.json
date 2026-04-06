@@ -1,8 +1,10 @@
 {
+  "id": "/right-is-right/",
   "name": "Right is Right",
   "short_name": "RiR",
   "description": "라이프스타일 밸런스 타이머",
-  "start_url": "/",
+  "start_url": "./index.html",
+  "scope": "./",
   "display": "standalone",
   "background_color": "#0f172a",
   "theme_color": "#0f172a",
